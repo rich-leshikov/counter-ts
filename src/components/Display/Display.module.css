@@ -1,0 +1,19 @@
+.Display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 10vh;
+
+  margin: 20px;
+  height: 130px;
+  width: 310px;
+  background-color: #67d9fe;
+  border-radius: 10px;
+}
+
+.Display p {
+  color: #2d2d37;
+  font-size: 70px;
+  font-weight: bold;
+}

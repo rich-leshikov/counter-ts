@@ -1,0 +1,18 @@
+.Button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  margin: 25px;
+  height: 45px;
+  width: 120px;
+  background-color: #67d9fe;
+  border-radius: 10px;
+}
+
+.Button p {
+  color: #2d2d37;
+  font-size: 40px;
+  font-weight: bold;
+}
