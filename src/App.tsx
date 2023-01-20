@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {v1} from 'uuid';
 import './App.css';
 import {Counter} from './components/Counter';
@@ -16,6 +16,17 @@ function App() {
     {id: v1(), title: 'inc', disabled: false, function: incrementCounter},
     {id: v1(), title: 'reset', disabled: true, function: resetCounter},
   ])
+
+  useEffect(() => {
+    let counterValue = localStorage.getItem('counterValue')
+    if (counterValue) {
+      setCount(JSON.parse(counterValue))
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('counterValue', JSON.stringify(count))
+  }, [count])
 
   function incrementCounter() {
     setCount(count => count + 1)
