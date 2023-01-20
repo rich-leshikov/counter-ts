@@ -17,3 +17,7 @@
   font-size: 70px;
   font-weight: bold;
 }
+
+p.alert {
+  color: #c20a0a;
+}

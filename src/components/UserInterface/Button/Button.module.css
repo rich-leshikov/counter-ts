@@ -9,10 +9,13 @@
   width: 120px;
   background-color: #67d9fe;
   border-radius: 10px;
-}
-
-.Button p {
+  cursor: pointer;
   color: #2d2d37;
   font-size: 40px;
   font-weight: bold;
+}
+
+.disabled {
+  cursor: default;
+  background-color: #447387;
 }
