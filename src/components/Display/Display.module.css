@@ -2,18 +2,50 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
   min-height: 10vh;
 
   margin: 20px;
   height: 130px;
   width: 310px;
-  background-color: #67d9fe;
+  border: 3px solid #67d9fe;
   border-radius: 10px;
+  background-color: #2d2d37;
 }
 
-.Display p {
+.setter {
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  font-size: 24px;
+  font-weight: bold;
+  row-gap: 20px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.row input {
+  display: inline-block;
+  width: 120px;
+  border: 2px solid #67d9fe;
+  border-radius: 5px;
+  text-align: center;
   color: #2d2d37;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.row p {
+  color: #67d9fe;
+  display: inline-block;
+}
+
+.counter {
+  color: #67d9fe;
   font-size: 70px;
   font-weight: bold;
 }

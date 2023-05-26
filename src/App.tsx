@@ -79,11 +79,13 @@ function App() {
 
   return (
     <div className="App">
-      {userPanels.map(p => {
-        return (
-          <UserPanel key={p.id} id={p.id} DisplayType={p.DisplayType} count={p.count} buttons={p.buttons}/>
-        )
-      })}
+      <div className="container">
+        {userPanels.map(p => {
+          return (
+            <UserPanel key={p.id} id={p.id} DisplayType={p.DisplayType} count={p.count} buttons={p.buttons}/>
+          )
+        })}
+      </div>
     </div>
   )
 }
