@@ -1,4 +1,3 @@
-import React from 'react';
 import s from './UserInterface.module.css'
 import {Button} from './Button/Button';
 import {ButtonType} from '../../App';
