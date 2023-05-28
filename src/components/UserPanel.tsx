@@ -1,7 +1,8 @@
 import s from './UserPanel.module.css'
 import {Display} from './Display/Display';
 import {UserInterface} from './UserInterface/UserInterface';
-import {ButtonType, UserPanelType} from '../App';
+import {UserPanelType} from '../state/user-panels-reducer';
+import {ButtonType} from '../state/buttons-reducer';
 
 
 type UserPanelPropsType = UserPanelType & {

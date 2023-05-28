@@ -1,6 +1,6 @@
 import s from './UserInterface.module.css'
 import {Button} from './Button/Button';
-import {ButtonType} from '../../App';
+import {ButtonType} from '../../state/buttons-reducer';
 
 
 type UserInterfacePropsType = {

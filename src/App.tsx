@@ -2,23 +2,8 @@ import {useEffect, useState} from 'react';
 import {v1} from 'uuid';
 import './App.css';
 import {UserPanel} from './components/UserPanel';
-
-
-export type DisplayType = 'setter' | 'counter'
-export type ButtonType = {
-  buttonId: string
-  title: string
-  disabled: boolean
-  function: (userPanelId: string) => void
-}
-export type ButtonsArrayType = {
-  [key: string]: Array<ButtonType>
-}
-export type UserPanelType = {
-  id: string
-  displayType: DisplayType
-  count: number //shouldn't be assigned to setter display type
-}
+import {UserPanelType} from './state/user-panels-reducer';
+import {ButtonsArrayType} from './state/buttons-reducer';
 
 
 function App() {
@@ -37,16 +22,17 @@ function App() {
 
   const [userPanels, setUserPanels] = useState<Array<UserPanelType>>([
     {id: userPanelId1, displayType: 'setter', count: 0},
-    {id: userPanelId2, displayType: 'counter', count: 0},
+    {id: userPanelId2, displayType: 'counter', count: 0}
   ])
 
-  // const [count, setCount] = useState(0)
 
   useEffect(() => {
     let counterValue = localStorage.getItem('counterValue')
     if (counterValue) {
-      // setCount(JSON.parse(counterValue))
-      setUserPanels(userPanels.map(up => up.id === userPanels[1].id ? { ...up, count: Number(JSON.parse(counterValue || '{}')) } : up))
+      setUserPanels(userPanels.map(up => up.id === userPanels[1].id ? {
+        ...up,
+        count: Number(JSON.parse(counterValue || '{}'))
+      } : up))
     }
   }, [])
 
@@ -60,28 +46,26 @@ function App() {
 
   function incrementCounter(userPanelId: string) {
     console.log('incrementCounter', userPanels[1].count)
-    // setUserPanels([...userPanels, {...userPanels[1], count: userPanels[1].count + 1}])
-    setUserPanels(userPanels.map(up => up.id === userPanelId ? { ...up, count: up.count + 1 } : up))
-    // setCount(count => count + 1)
+    setUserPanels(userPanels.map(up => up.id === userPanelId ? {...up, count: up.count + 1} : up))
     if (userPanels[1].count === 5) {
-      // buttons[userPanelId][0].disabled = true
-      // setButtons({...buttons, [userPanelId]: [...buttons[userPanelId], {...buttons[userPanelId][0], disabled: true}]})
-      setButtons({...buttons, [userPanelId]: buttons[userPanelId].map(b => b.buttonId === '0' ? {...b, disabled: true} : b) })
+      setButtons({
+        ...buttons,
+        [userPanelId]: buttons[userPanelId].map(b => b.buttonId === '0' ? {...b, disabled: true} : b)
+      })
     }
-    // buttons[userPanelId][1].disabled = false
-    // setButtons({...buttons})
-    // setButtons({...buttons, [userPanelId]: [...buttons[userPanelId], {...buttons[userPanelId][1], disabled: false}]})
-    setButtons({...buttons, [userPanelId]: buttons[userPanelId].map(b => b.buttonId === '1' ? {...b, disabled: false} : b) })
+    setButtons({
+      ...buttons,
+      [userPanelId]: buttons[userPanelId].map(b => b.buttonId === '1' ? {...b, disabled: false} : b)
+    })
     console.log('End', userPanels[1].count)
   }
 
   function resetCounter(userPanelId: string) {
-    // setUserPanels([...userPanels, {...userPanels[1], count: 0}])
-    // buttons[userPanelId][1].disabled = true
-    // setButtons({...buttons})
-    // setButtons({...buttons, [userPanelId]: [...buttons[userPanelId], {...buttons[userPanelId][1], disabled: true}]})
-    setUserPanels(userPanels.map(up => up.id === userPanelId ? { ...up, count: 0 } : up))
-    setButtons({...buttons, [userPanelId]: buttons[userPanelId].map(b => b.buttonId === '1' ? {...b, disabled: true} : b) })
+    setUserPanels(userPanels.map(up => up.id === userPanelId ? {...up, count: 0} : up))
+    setButtons({
+      ...buttons,
+      [userPanelId]: buttons[userPanelId].map(b => b.buttonId === '1' ? {...b, disabled: true} : b)
+    })
   }
 
   return (

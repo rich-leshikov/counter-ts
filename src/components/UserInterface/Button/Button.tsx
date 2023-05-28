@@ -1,5 +1,5 @@
 import s from './Button.module.css'
-import {ButtonType} from '../../../App';
+import {ButtonType} from '../../../state/buttons-reducer';
 
 type ButtonPropsType = ButtonType & {
   userPanelId: string

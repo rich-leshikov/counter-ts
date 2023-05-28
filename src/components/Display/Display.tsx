@@ -1,7 +1,7 @@
 import s from './Display.module.css'
-import {DisplayType} from '../../App';
 import {DisplayCounter} from './DisplayCounter';
 import {DisplaySetter} from './DisplaySetter';
+import {DisplayType} from '../../state/user-panels-reducer';
 
 
 type DisplayPropsType = {
