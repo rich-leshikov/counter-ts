@@ -1,29 +1,41 @@
 import s from './UserInterface.module.css'
 import {Button} from './Button/Button';
-import {ButtonType} from '../../state/buttons-reducer';
+import {useDispatch} from 'react-redux';
+import {incrementCounterAC, resetCounterAC} from '../../state/user-panels-reducer';
 
 
 type UserInterfacePropsType = {
   userPanelId: string
   count: number
-  buttons: Array<ButtonType>
 }
 
 
-export function UserInterface(props: UserInterfacePropsType) {
+export function UserInterface({userPanelId, count}: UserInterfacePropsType) {
+  const dispatch = useDispatch()
+
+  function setMinMaxValues(userPanelId: string) {
+    console.log('1')
+  }
+
+  function incrementCounter(userPanelId: string) {
+    dispatch(incrementCounterAC(userPanelId))
+  }
+
+  function resetCounter(userPanelId: string) {
+    dispatch(resetCounterAC(userPanelId))
+  }
+
+  const setterButtons = userPanelId === 'userPanelId1' && <Button userPanelId={userPanelId} onClick={setMinMaxValues}/>
+  const counterButtons = userPanelId === 'userPanelId2' && <>
+    <Button userPanelId={userPanelId} onClick={incrementCounter}/>
+    <Button userPanelId={userPanelId} onClick={resetCounter}/>
+  </>
+
+
   return (
     <div className={s.UserInterface}>
-      {props.buttons.map(b => {
-        return (
-          <Button
-            key={b.buttonId}
-            buttonId={b.buttonId}
-            userPanelId={props.userPanelId}
-            title={b.title}
-            disabled={b.title === 'inc' ? props.count === 5 : props.count === 0}
-            function={b.function}
-          />)
-      })}
+      {setterButtons}
+      {counterButtons}
     </div>
   )
 }

@@ -1,8 +1,9 @@
 import s from './Button.module.css'
-import {ButtonType} from '../../../state/buttons-reducer';
 
-type ButtonPropsType = ButtonType & {
+type ButtonPropsType = {
   userPanelId: string
+  onClick: (userPanelId: string) => void
+  // userPanelId: string
 }
 
 export function Button(props: ButtonPropsType) {
@@ -11,7 +12,11 @@ export function Button(props: ButtonPropsType) {
   }
 
   return (
-    <div className={props.disabled ? (s.Button + ' ' + s.disabled) : s.Button} key={props.buttonId} onClick={onClickButton}>
+    <div
+      className={props.disabled ? (s.Button + ' ' + s.disabled) : s.Button}
+      key={props.buttonId}
+      onClick={onClickButton}
+    >
       <p>{props.title}</p>
     </div>
   )
