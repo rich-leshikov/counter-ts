@@ -1,34 +1,13 @@
-import {v1} from 'uuid';
+// state
+export const userPanelId1 = 'userPanelId1'
+export const userPanelId2 = 'userPanelId2'
 
-
-export type DisplayType = 'setter' | 'counter'
-export type UserPanelType = {
-  id: string
-  displayType: DisplayType
-  count: number //shouldn't be assigned to setter display type
-}
-
-type IncrementCounterType = {
-  type: 'INCREMENT-COUNTER'
-  userPanelId: string
-}
-type ResetCounterType = {
-  type: 'RESET-COUNTER'
-  userPanelId: string
-}
-export type ActionType = IncrementCounterType
-  | ResetCounterType
-
-
-export const userPanelId1 = v1()
-export const userPanelId2 = v1()
-
-let initialState: Array<UserPanelType> = [
+const initialState: Array<UserPanelType> = [
   {id: userPanelId1, displayType: 'setter', count: 0},
   {id: userPanelId2, displayType: 'counter', count: 0},
 ]
 
-
+// reducer
 export const userPanelsReducer = (state: Array<UserPanelType> = initialState, action: ActionType): Array<UserPanelType> => {
   switch (action.type) {
     case 'INCREMENT-COUNTER':
@@ -40,16 +19,22 @@ export const userPanelsReducer = (state: Array<UserPanelType> = initialState, ac
   }
 }
 
+// actions
+export const incrementCounterAC = (userPanelId: string) =>
+  ({type: 'INCREMENT-COUNTER', userPanelId} as const)
+export const resetCounterAC = (userPanelId: string) =>
+  ({type: 'RESET-COUNTER', userPanelId} as const)
 
-export const IncrementCounterAC = (userPanelId: string): IncrementCounterType => {
-  return {
-    type: 'INCREMENT-COUNTER',
-    userPanelId
-  }
-}
-export const ResetCounterAC = (userPanelId: string): ResetCounterType => {
-  return {
-    type: 'RESET-COUNTER',
-    userPanelId
-  }
+// types
+export type IncrementCounterType = ReturnType<typeof incrementCounterAC>
+export type ResetCounterType = ReturnType<typeof resetCounterAC>
+export type ActionType =
+  | IncrementCounterType
+  | ResetCounterType
+
+export type DisplayType = 'setter' | 'counter'
+export type UserPanelType = {
+  id: string
+  displayType: DisplayType
+  count: number //shouldn't be assigned to setter display type
 }
