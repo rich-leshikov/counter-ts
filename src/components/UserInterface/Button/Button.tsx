@@ -1,20 +1,21 @@
 import s from './Button.module.css'
 
 type ButtonPropsType = {
-  userPanelId: string
-  onClick: (userPanelId: string) => void
+  title: string
+  onClick: () => void
   // userPanelId: string
 }
 
 export function Button(props: ButtonPropsType) {
   const onClickButton = () => {
-    !props.disabled && props.function(props.userPanelId)
+    // !props.disabled && props.function(props.userPanelId)
+    props.onClick()
   }
 
   return (
     <div
-      className={props.disabled ? (s.Button + ' ' + s.disabled) : s.Button}
-      key={props.buttonId}
+      // className={props.disabled ? (s.Button + ' ' + s.disabled) : s.Button}
+      className={s.Button}
       onClick={onClickButton}
     >
       <p>{props.title}</p>

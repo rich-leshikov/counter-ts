@@ -13,8 +13,8 @@ type DisplayPropsType = {
 export function Display(props: DisplayPropsType) {
   return (
     <div className={s.Display}>
-      {props.displayType === 'counter' && <DisplayCounter count={props.count}/>}
       {props.displayType === 'setter' && <DisplaySetter/>}
+      {props.displayType === 'counter' && <DisplayCounter count={props.count}/>}
     </div>
   )
 }

@@ -13,22 +13,23 @@ type UserInterfacePropsType = {
 export function UserInterface({userPanelId, count}: UserInterfacePropsType) {
   const dispatch = useDispatch()
 
-  function setMinMaxValues(userPanelId: string) {
+  function setMinMaxValues() {
     console.log('1')
   }
 
-  function incrementCounter(userPanelId: string) {
+  function incrementCounter() {
     dispatch(incrementCounterAC(userPanelId))
   }
 
-  function resetCounter(userPanelId: string) {
+  function resetCounter() {
     dispatch(resetCounterAC(userPanelId))
   }
 
-  const setterButtons = userPanelId === 'userPanelId1' && <Button userPanelId={userPanelId} onClick={setMinMaxValues}/>
+  const setterButtons = userPanelId === 'userPanelId1'
+    && <Button title="set" onClick={setMinMaxValues}/>
   const counterButtons = userPanelId === 'userPanelId2' && <>
-    <Button userPanelId={userPanelId} onClick={incrementCounter}/>
-    <Button userPanelId={userPanelId} onClick={resetCounter}/>
+    <Button title="inc" onClick={incrementCounter}/>
+    <Button title="reset" onClick={resetCounter}/>
   </>
 
 

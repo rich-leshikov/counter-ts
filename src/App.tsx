@@ -1,9 +1,7 @@
-import {useEffect, useState} from 'react';
-import {v1} from 'uuid';
 import './App.css';
 import {UserPanel} from './components/UserPanel';
-import {incrementCounterAC, resetCounterAC, UserPanelType} from './state/user-panels-reducer';
-import {useDispatch, useSelector} from 'react-redux';
+import {UserPanelType} from './state/user-panels-reducer';
+import {useSelector} from 'react-redux';
 import {AppRootStateType} from './state/store';
 
 

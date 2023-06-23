@@ -6,7 +6,7 @@ type DisplayCounterPropsType = {
 }
 
 
-export function DisplayCounter(props: DisplayCounterPropsType) {
+export const DisplayCounter = (props: DisplayCounterPropsType) => {
   return (
     <>
       <p className={`${s.counter} ${props.count === 5 ? s.alert : ''}`}>{props.count}</p>

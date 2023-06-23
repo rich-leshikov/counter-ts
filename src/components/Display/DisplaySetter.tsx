@@ -5,7 +5,7 @@ type DisplaySetterPropsType = {
 }
 
 
-export function DisplaySetter(props: DisplaySetterPropsType) {
+export const DisplaySetter = (props: DisplaySetterPropsType) => {
   return (
     <div className={s.setter}>
       <div className={s.row}>
