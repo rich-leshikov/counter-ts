@@ -4,7 +4,6 @@ type ButtonPropsType = {
   title: string
   isDisabled: boolean
   onClick: () => void
-  // userPanelId: string
 }
 
 export function Button(props: ButtonPropsType) {

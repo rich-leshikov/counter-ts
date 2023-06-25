@@ -10,8 +10,14 @@ type UserPanelPropsType = UserPanelType
 export function UserPanel(props: UserPanelPropsType) {
   return (
     <div className={s.Container}>
-      <Display userPanelType={props.panelType} count={props.count}/>
-      <UserInterface userPanelId={props.id} panelType={props.panelType} count={props.count}/>
+      <Display userPanelType={props.panelType} count={props.count} maxValue={props.maxValue}/>
+      <UserInterface
+        userPanelId={props.id}
+        panelType={props.panelType}
+        count={props.count}
+        maxValue={props.maxValue}
+        startValue={props.startValue}
+      />
     </div>
   )
 }

@@ -16,7 +16,7 @@ export function Display(props: DisplayPropsType) {
   return (
     <div className={s.Display}>
       {props.userPanelType === 'setter' && <DisplaySetter/>}
-      {props.userPanelType === 'counter' && <DisplayCounter count={props.count}/>}
+      {props.userPanelType === 'counter' && <DisplayCounter count={props.count} maxValue={props.maxValue}/>}
     </div>
   )
 }
