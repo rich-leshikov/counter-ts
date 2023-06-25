@@ -1,6 +1,6 @@
 import {
   incrementCounterAC,
-  resetCounterAC, setMaxValueAC, setStartValueAC,
+  resetCounterAC, changeMaxValueAC, changeStartValueAC,
   userPanelId1,
   userPanelId2,
   userPanelsReducer,
@@ -12,8 +12,8 @@ let startState: Array<UserPanelType>
 
 beforeEach(() => {
   startState = [
-    {id: userPanelId1, userPanelType: 'setter'},
-    {id: userPanelId2, userPanelType: 'counter', count: 0, startValue: 0, maxValue: 10}
+    {id: userPanelId1, panelType: 'setter'},
+    {id: userPanelId2, panelType: 'counter', count: 0, startValue: 0, maxValue: 10}
   ]
 })
 
@@ -33,7 +33,7 @@ test('counter should be reset to zero', () => {
 })
 
 test('start value should be changed', () => {
-  const endState = userPanelsReducer(startState, setStartValueAC(3))
+  const endState = userPanelsReducer(startState, changeStartValueAC(3))
 
   expect(endState[1].startValue).toBe(3)
   expect(endState[1].count).toBe(3)
@@ -41,7 +41,7 @@ test('start value should be changed', () => {
 })
 
 test('max value should be changed', () => {
-  const endState = userPanelsReducer(startState, setMaxValueAC(5))
+  const endState = userPanelsReducer(startState, changeMaxValueAC(5))
 
   expect(endState[1].maxValue).toBe(5)
   expect(endState[1].count).toBe(0)
