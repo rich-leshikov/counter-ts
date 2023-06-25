@@ -11,16 +11,24 @@ let initialState: Array<UserPanelType> = [
 export const userPanelsReducer = (state: Array<UserPanelType> = initialState, action: ActionType): Array<UserPanelType> => {
   switch (action.type) {
     case 'INCREMENT-COUNTER':
-      return state.map(up => up.count === 0 ? {...up, count: up.count + 1} : up)
+      return state.map(up => !!up.count || up.count === 0 ? {...up, count: up.count + 1} : up)
     case 'RESET-COUNTER':
-      return state.map(up => up.count === 0 ? {...up, count: up.startValue} : up)
+      return state.map(up => !!up.count || up.count === 0 ? {...up, count: up.startValue} : up)
     case 'SET-START-VALUE':
-      return state.map(up => up.startValue === 0 ? {
+      return state.map(up => !!up.startValue || up.startValue === 0 ? {
         ...up,
-        startValue: action.startValue
+        startValue: action.startValue,
+        count: action.startValue
       } : up)
-    case 'SET-MAX-VALUE':
-      return state.map(up => up.maxValue === 0 ? {...up, maxValue: action.maxValue} : up)
+    case 'SET-MAX-VALUE': {
+      if ((!!state[1].startValue || state[1].startValue === 0) && (action.maxValue >= state[1].startValue)) {
+        return state.map(up => !!up.maxValue || up.maxValue === 0 ? {
+          ...up,
+          maxValue: action.maxValue,
+          count: up.startValue
+        } : up)
+      } else return state
+    }
     default:
       return state
   }
