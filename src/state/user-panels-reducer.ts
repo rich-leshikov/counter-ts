@@ -10,17 +10,17 @@ let initialState: Array<UserPanelType> = [
 // reducer
 export const userPanelsReducer = (state: Array<UserPanelType> = initialState, action: ActionType): Array<UserPanelType> => {
   switch (action.type) {
-    case 'INCREMENT-COUNTER':
+    case 'USER-PANELS/INCREMENT-COUNTER':
       return state.map(up => !!up.count || up.count === 0 ? {...up, count: up.count + 1} : up)
-    case 'RESET-COUNTER':
+    case 'USER-PANELS/RESET-COUNTER':
       return state.map(up => !!up.count || up.count === 0 ? {...up, count: up.startValue} : up)
-    case 'SET-START-VALUE':
+    case 'USER-PANELS/SET-START-VALUE':
       return state.map(up => !!up.startValue || up.startValue === 0 ? {
         ...up,
         startValue: action.startValue,
         count: action.startValue
       } : up)
-    case 'SET-MAX-VALUE': {
+    case 'USER-PANELS/SET-MAX-VALUE': {
       if ((!!state[1].startValue || state[1].startValue === 0) && (action.maxValue >= state[1].startValue)) {
         return state.map(up => !!up.maxValue || up.maxValue === 0 ? {
           ...up,
@@ -35,16 +35,16 @@ export const userPanelsReducer = (state: Array<UserPanelType> = initialState, ac
 }
 
 // actions
-export const incrementCounterAC = () => ({type: 'INCREMENT-COUNTER'} as const)
-export const resetCounterAC = () => ({type: 'RESET-COUNTER'} as const)
-export const setStartValue = (startValue: number) => ({type: 'SET-START-VALUE', startValue} as const)
-export const setMaxValue = (maxValue: number) => ({type: 'SET-MAX-VALUE', maxValue} as const)
+export const incrementCounterAC = () => ({type: 'USER-PANELS/INCREMENT-COUNTER'} as const)
+export const resetCounterAC = () => ({type: 'USER-PANELS/RESET-COUNTER'} as const)
+export const setStartValueAC = (startValue: number) => ({type: 'USER-PANELS/SET-START-VALUE', startValue} as const)
+export const setMaxValueAC = (maxValue: number) => ({type: 'USER-PANELS/SET-MAX-VALUE', maxValue} as const)
 
 // types
 export type IncrementCounterType = ReturnType<typeof incrementCounterAC>
 export type ResetCounterType = ReturnType<typeof resetCounterAC>
-export type ResetStartValueType = ReturnType<typeof setStartValue>
-export type ResetMaxValueType = ReturnType<typeof setMaxValue>
+export type ResetStartValueType = ReturnType<typeof setStartValueAC>
+export type ResetMaxValueType = ReturnType<typeof setMaxValueAC>
 export type ActionType =
   | IncrementCounterType
   | ResetCounterType
