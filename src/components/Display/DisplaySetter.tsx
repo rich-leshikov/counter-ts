@@ -1,8 +1,8 @@
 import {ChangeEvent, FC} from 'react'
-import {useDispatch} from 'react-redux'
 
 import s from './Display.module.css'
-import {setMaxValueAC, setStartValueAC} from '../../state/values-setter-reducer';
+import {setMaxValueAC, setStartValueAC} from '../../state/values-setter-reducer'
+import {useAppDispatch} from '../../state/store'
 
 
 type DisplaySetterPropsType = {
@@ -12,7 +12,7 @@ type DisplaySetterPropsType = {
 
 
 export const DisplaySetter: FC<DisplaySetterPropsType> = ({startValue, maxValue}) => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const setMaxValue = (value: ChangeEvent<HTMLInputElement>) => {
     dispatch(setMaxValueAC(+value.currentTarget.value))

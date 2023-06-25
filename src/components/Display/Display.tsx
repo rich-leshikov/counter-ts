@@ -1,20 +1,22 @@
 import s from './Display.module.css'
 import {DisplayCounter} from './DisplayCounter';
 import {DisplaySetter} from './DisplaySetter';
-import {DisplayType} from '../../state/user-panels-reducer';
+import {PanelType} from '../../state/user-panels-reducer';
 
 
 type DisplayPropsType = {
-  displayType: DisplayType
-  count: number
+  userPanelType: PanelType
+  count?: number
+  startValue?: number
+  maxValue?: number
 }
 
 
 export function Display(props: DisplayPropsType) {
   return (
     <div className={s.Display}>
-      {props.displayType === 'setter' && <DisplaySetter/>}
-      {props.displayType === 'counter' && <DisplayCounter count={props.count}/>}
+      {props.userPanelType === 'setter' && <DisplaySetter/>}
+      {props.userPanelType === 'counter' && <DisplayCounter count={props.count}/>}
     </div>
   )
 }

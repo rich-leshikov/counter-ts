@@ -1,35 +1,42 @@
+import {useSelector} from 'react-redux'
+
 import s from './UserInterface.module.css'
-import {Button} from './Button/Button';
-import {useDispatch} from 'react-redux';
-import {incrementCounterAC, resetCounterAC} from '../../state/user-panels-reducer';
+import {Button} from './Button/Button'
+import {incrementCounterAC, PanelType, resetCounterAC, setMinMaxValuesAC} from '../../state/user-panels-reducer'
+import {AppRootStateType, useAppDispatch} from '../../state/store'
+import {ValuesSetterStateType} from '../../state/values-setter-reducer'
 
 
 type UserInterfacePropsType = {
   userPanelId: string
-  count: number
+  panelType: PanelType
+  count?: number
 }
 
 
-export function UserInterface({userPanelId, count}: UserInterfacePropsType) {
-  const dispatch = useDispatch()
+export function UserInterface(props: UserInterfacePropsType) {
+  const tasks = useSelector<AppRootStateType, ValuesSetterStateType>(state => state.valuesSetter)
+
+  const dispatch = useAppDispatch()
 
   function setMinMaxValues() {
-    console.log('1')
+    dispatch(setMinMaxValuesAC(tasks.maxValue, tasks.startValue))
   }
 
   function incrementCounter() {
-    dispatch(incrementCounterAC(userPanelId))
+    dispatch(incrementCounterAC())
   }
 
   function resetCounter() {
-    dispatch(resetCounterAC(userPanelId))
+    dispatch(resetCounterAC())
   }
 
-  const setterButtons = userPanelId === 'userPanelId1'
-    && <Button title="set" onClick={setMinMaxValues}/>
-  const counterButtons = userPanelId === 'userPanelId2' && <>
-    <Button title="inc" onClick={incrementCounter}/>
-    <Button title="reset" onClick={resetCounter}/>
+  const setterButtons = props.panelType === 'setter'
+    && <Button title="set" isDisabled={false} onClick={setMinMaxValues}/>
+  const counterButtons = props.panelType === 'counter'
+    && <>
+    <Button title="inc" isDisabled={false} onClick={incrementCounter}/>
+    <Button title="reset" isDisabled={false} onClick={resetCounter}/>
   </>
 
 

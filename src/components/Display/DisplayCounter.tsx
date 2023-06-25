@@ -2,7 +2,7 @@ import s from './Display.module.css'
 
 
 type DisplayCounterPropsType = {
-  count: number
+  count?: number
 }
 
 
