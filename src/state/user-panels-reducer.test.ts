@@ -1,6 +1,7 @@
 import {
   incrementCounterAC,
-  resetCounterAC, changeMaxValueAC, changeStartValueAC,
+  resetCounterAC,
+  setMinMaxValuesAC,
   userPanelId1,
   userPanelId2,
   userPanelsReducer,
@@ -32,18 +33,11 @@ test('counter should be reset to zero', () => {
   expect(endState.length).toBe(2)
 })
 
-test('start value should be changed', () => {
-  const endState = userPanelsReducer(startState, changeStartValueAC(3))
+test('start and max values should be changed', () => {
+  const endState = userPanelsReducer(startState, setMinMaxValuesAC(5, 3))
 
   expect(endState[1].startValue).toBe(3)
-  expect(endState[1].count).toBe(3)
-  expect(endState.length).toBe(2)
-})
-
-test('max value should be changed', () => {
-  const endState = userPanelsReducer(startState, changeMaxValueAC(5))
-
   expect(endState[1].maxValue).toBe(5)
-  expect(endState[1].count).toBe(0)
+  expect(endState[1].count).toBe(3)
   expect(endState.length).toBe(2)
 })

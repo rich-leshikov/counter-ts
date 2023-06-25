@@ -14,18 +14,13 @@ export const userPanelsReducer = (state: Array<UserPanelType> = initialState, ac
       return state.map(up => !!up.count || up.count === 0 ? {...up, count: up.count + 1} : up)
     case 'USER-PANELS/RESET-COUNTER':
       return state.map(up => !!up.count || up.count === 0 ? {...up, count: up.startValue} : up)
-    case 'USER-PANELS/CHANGE-START-VALUE':
-      return state.map(up => !!up.startValue || up.startValue === 0 ? {
-        ...up,
-        startValue: action.startValue,
-        count: action.startValue
-      } : up)
-    case 'USER-PANELS/CHANGE-MAX-VALUE': {
+    case 'USER-PANELS/SET-MIN-MAX-VALUES': {
       if ((!!state[1].startValue || state[1].startValue === 0) && (action.maxValue >= state[1].startValue)) {
         return state.map(up => !!up.maxValue || up.maxValue === 0 ? {
           ...up,
+          startValue: action.startValue,
           maxValue: action.maxValue,
-          count: up.startValue
+          count: action.startValue
         } : up)
       } else return state
     }
@@ -37,19 +32,20 @@ export const userPanelsReducer = (state: Array<UserPanelType> = initialState, ac
 // actions
 export const incrementCounterAC = () => ({type: 'USER-PANELS/INCREMENT-COUNTER'} as const)
 export const resetCounterAC = () => ({type: 'USER-PANELS/RESET-COUNTER'} as const)
-export const changeStartValueAC = (startValue: number) => ({type: 'USER-PANELS/CHANGE-START-VALUE', startValue} as const)
-export const changeMaxValueAC = (maxValue: number) => ({type: 'USER-PANELS/CHANGE-MAX-VALUE', maxValue} as const)
+export const setMinMaxValuesAC = (maxValue: number, startValue: number) => ({
+  type: 'USER-PANELS/SET-MIN-MAX-VALUES',
+  maxValue,
+  startValue
+} as const)
 
 // types
 export type IncrementCounterType = ReturnType<typeof incrementCounterAC>
 export type ResetCounterType = ReturnType<typeof resetCounterAC>
-export type SetStartValueType = ReturnType<typeof changeStartValueAC>
-export type SetMaxValueType = ReturnType<typeof changeMaxValueAC>
+export type SetMinMaxValuesType = ReturnType<typeof setMinMaxValuesAC>
 export type UserPanelsActionType =
   | IncrementCounterType
   | ResetCounterType
-  | SetStartValueType
-  | SetMaxValueType
+  | SetMinMaxValuesType
 
 export type PanelType = 'setter' | 'counter'
 export type UserPanelType = {

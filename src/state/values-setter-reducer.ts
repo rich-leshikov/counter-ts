@@ -1,10 +1,10 @@
-let initialState: InitStateType = {
+let initialState: ValuesSetterStateType = {
   startValue: 0,
   maxValue: 0
 }
 
 // reducer
-export const valuesSetterReducer = (state: InitStateType = initialState, action: ValuesSetterActionType): InitStateType => {
+export const valuesSetterReducer = (state: ValuesSetterStateType = initialState, action: ValuesSetterActionType): ValuesSetterStateType => {
   switch (action.type) {
     case 'VALUES-SETTER/SET-START-VALUE':
       return {...state, startValue: action.startValue}
@@ -26,7 +26,7 @@ export type ValuesSetterActionType =
   | SetStartValueType
   | SetMaxValueType
 
-type InitStateType = {
+export type ValuesSetterStateType = {
   startValue: number
   maxValue: number
 }

@@ -1,8 +1,9 @@
-import {AnyAction, applyMiddleware, combineReducers, legacy_createStore as createStore} from 'redux';
-import {UserPanelsActionType, userPanelsReducer} from './user-panels-reducer';
-import {ValuesSetterActionType, valuesSetterReducer} from './values-setter-reducer';
-import {useDispatch} from 'react-redux';
+import {AnyAction, applyMiddleware, combineReducers, legacy_createStore as createStore} from 'redux'
+import {useDispatch} from 'react-redux'
 import thunkMiddleware, {ThunkDispatch} from 'redux-thunk'
+
+import {UserPanelsActionType, userPanelsReducer} from './user-panels-reducer'
+import {ValuesSetterActionType, valuesSetterReducer} from './values-setter-reducer'
 
 
 const rootReducer = combineReducers({
