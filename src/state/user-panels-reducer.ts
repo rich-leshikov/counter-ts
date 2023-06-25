@@ -2,7 +2,7 @@
 export const userPanelId1 = 'userPanelId1'
 export const userPanelId2 = 'userPanelId2'
 
-const initialState: Array<UserPanelType> = [
+let initialState: Array<UserPanelType> = [
   {id: userPanelId1, userPanelType: 'setter'},
   {id: userPanelId2, userPanelType: 'counter', count: 0, startValue: 0, maxValue: 0}
 ]
@@ -11,13 +11,16 @@ const initialState: Array<UserPanelType> = [
 export const userPanelsReducer = (state: Array<UserPanelType> = initialState, action: ActionType): Array<UserPanelType> => {
   switch (action.type) {
     case 'INCREMENT-COUNTER':
-      return state.map(up => up.count && up.userPanelType === 'counter' ? {...up, count: up.count + 1} : up)
+      return state.map(up => up.count === 0 ? {...up, count: up.count + 1} : up)
     case 'RESET-COUNTER':
-      return state.map(up => up.count && up.userPanelType === 'counter' ? {...up, count: up.startValue} : up)
+      return state.map(up => up.count === 0 ? {...up, count: up.startValue} : up)
     case 'SET-START-VALUE':
-      return state.map(up => up.startValue && up.userPanelType === 'counter' ? {...up, startValue: action.startValue} : up)
+      return state.map(up => up.startValue === 0 ? {
+        ...up,
+        startValue: action.startValue
+      } : up)
     case 'SET-MAX-VALUE':
-      return state.map(up => up.maxValue && up.userPanelType === 'counter' ? {...up, maxValue: action.maxValue} : up)
+      return state.map(up => up.maxValue === 0 ? {...up, maxValue: action.maxValue} : up)
     default:
       return state
   }

@@ -1,31 +1,33 @@
-import {incrementCounterAC, resetCounterAC, userPanelsReducer, UserPanelType} from './user-panels-reducer';
+import {
+  incrementCounterAC,
+  resetCounterAC,
+  userPanelId1,
+  userPanelId2,
+  userPanelsReducer,
+  UserPanelType
+} from './user-panels-reducer'
 
 
-let userPanelId1: string
-let userPanelId2: string
 let startState: Array<UserPanelType>
 
 beforeEach(() => {
-  userPanelId1 = 'userPanelId1'
-  userPanelId1 = 'userPanelId2'
-
   startState = [
-    {id: userPanelId1, displayType: 'setter', count: 2},
-    {id: userPanelId2, displayType: 'counter', count: 0}
+    {id: userPanelId1, userPanelType: 'setter'},
+    {id: userPanelId2, userPanelType: 'counter', count: 0, startValue: 0, maxValue: 10}
   ]
 })
 
 
 test('counter of user panel should be changed', () => {
-  let endState = userPanelsReducer(startState, incrementCounterAC(userPanelId2))
-
+  const endState = userPanelsReducer(startState, incrementCounterAC())
+  // console.log(endState)
   expect(endState[1].count).toBe(1)
   expect(endState.length).toBe(2)
 })
 
 test('counter should be reset to zero', () => {
-  const endState = userPanelsReducer(startState, resetCounterAC(userPanelId1))
+  const endState = userPanelsReducer(startState, resetCounterAC())
 
-  expect(endState[0].count).toBe(0)
+  expect(endState[1].count).toBe(0)
   expect(endState.length).toBe(2)
 })
