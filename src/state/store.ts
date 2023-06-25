@@ -1,6 +1,6 @@
 import {combineReducers, legacy_createStore as createStore} from 'redux';
-import {userPanelsReducer} from './user-panels-reducer';
-import {valuesSetterReducer} from './values-setter-reducer';
+import {UserPanelsActionType, userPanelsReducer} from './user-panels-reducer';
+import {ValuesSetterActionType, valuesSetterReducer} from './values-setter-reducer';
 
 
 const rootReducer = combineReducers({
@@ -11,4 +11,5 @@ const rootReducer = combineReducers({
 export const store = createStore(rootReducer)
 
 
+export type ActionType = UserPanelsActionType | ValuesSetterActionType
 export type AppRootStateType = ReturnType<typeof rootReducer>

@@ -8,7 +8,7 @@ let initialState: Array<UserPanelType> = [
 ]
 
 // reducer
-export const userPanelsReducer = (state: Array<UserPanelType> = initialState, action: ActionType): Array<UserPanelType> => {
+export const userPanelsReducer = (state: Array<UserPanelType> = initialState, action: UserPanelsActionType): Array<UserPanelType> => {
   switch (action.type) {
     case 'USER-PANELS/INCREMENT-COUNTER':
       return state.map(up => !!up.count || up.count === 0 ? {...up, count: up.count + 1} : up)
@@ -43,13 +43,13 @@ export const changeMaxValueAC = (maxValue: number) => ({type: 'USER-PANELS/CHANG
 // types
 export type IncrementCounterType = ReturnType<typeof incrementCounterAC>
 export type ResetCounterType = ReturnType<typeof resetCounterAC>
-export type ResetStartValueType = ReturnType<typeof changeStartValueAC>
-export type ResetMaxValueType = ReturnType<typeof changeMaxValueAC>
-export type ActionType =
+export type SetStartValueType = ReturnType<typeof changeStartValueAC>
+export type SetMaxValueType = ReturnType<typeof changeMaxValueAC>
+export type UserPanelsActionType =
   | IncrementCounterType
   | ResetCounterType
-  | ResetStartValueType
-  | ResetMaxValueType
+  | SetStartValueType
+  | SetMaxValueType
 
 export type PanelType = 'setter' | 'counter'
 export type UserPanelType = {
