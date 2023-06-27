@@ -1,7 +1,9 @@
+import {useEffect} from 'react'
+import {useSelector} from 'react-redux'
+
 import './App.css'
 import {UserPanel} from './components/UserPanel'
 import {UserPanelType} from './state/user-panels-reducer'
-import {useSelector} from 'react-redux'
 import {AppRootStateType} from './state/store'
 
 
@@ -31,6 +33,7 @@ function App() {
         <UserPanel
           id={userPanels[1].id}
           panelType={userPanels[1].panelType}
+          infoMessage={userPanels[1].infoMessage}
           count={userPanels[1].count}
           startValue={userPanels[1].startValue}
           maxValue={userPanels[1].maxValue}

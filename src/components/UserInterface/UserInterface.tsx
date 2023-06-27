@@ -3,18 +3,18 @@ import {useSelector} from 'react-redux'
 
 import s from './UserInterface.module.css'
 import {Button} from './Button/Button'
-import {incrementCounterAC, PanelType, resetCounterAC, setMinMaxValuesAC} from '../../state/user-panels-reducer'
+import {
+  incrementCounterAC,
+  PanelType,
+  resetCounterAC,
+  setMinMaxValuesAC,
+  UserPanelType
+} from '../../state/user-panels-reducer'
 import {AppRootStateType, useAppDispatch} from '../../state/store'
 import {ValuesSetterStateType} from '../../state/values-setter-reducer'
 
 
-type UserInterfacePropsType = {
-  userPanelId?: string
-  panelType: PanelType
-  count?: number
-  maxValue?: number
-  startValue?: number
-}
+type UserInterfacePropsType = UserPanelType
 
 
 export const UserInterface: FC<UserInterfacePropsType> = ({panelType, count, maxValue, startValue}) => {
@@ -33,7 +33,7 @@ export const UserInterface: FC<UserInterfacePropsType> = ({panelType, count, max
     dispatch(resetCounterAC())
   }
 
-  const isSetButtonDisabled = tasks.maxValue <= tasks.startValue || tasks.maxValue < 1 || tasks.startValue < 0
+  const isSetButtonDisabled = tasks.hasError
   const isIncButtonDisabled = count === maxValue
   const isResetButtonDisabled = count === startValue
 
