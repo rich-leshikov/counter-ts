@@ -6,9 +6,13 @@
 
   margin: 20px;
   height: 130px;
+  color: #67d9fe;
   border: 3px solid #67d9fe;
   border-radius: 10px;
   background-color: #2d2d37;
+
+  font-size: 22px;
+  font-weight: bold;
 }
 
 .setter {
@@ -16,8 +20,6 @@
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  font-size: 24px;
-  font-weight: bold;
   row-gap: 20px;
 }
 
@@ -45,7 +47,6 @@
 }
 
 .counter {
-  color: #67d9fe;
   font-size: 70px;
   font-weight: bold;
 }
