@@ -1,4 +1,5 @@
-import {AppRootStateType} from '../state/store';
+import {AppRootStateType} from '../state/store'
+
 
 export const loadState = () => {
   try {

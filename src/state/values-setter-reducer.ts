@@ -8,18 +8,16 @@ let initialState: ValuesSetterStateType = {
 export const valuesSetterReducer = (state: ValuesSetterStateType = initialState, action: ValuesSetterActionType): ValuesSetterStateType => {
   switch (action.type) {
     case 'VALUES-SETTER/SET-START-VALUE':
-      console.log('prev hasError', state.hasError)
       return {
         ...state,
         startValue: action.startValue,
-        hasError: state.maxValue <= state.startValue || state.maxValue < 1 || state.startValue < 0
+        hasError: state.maxValue <= action.startValue || state.maxValue < 1 || action.startValue < 0
       }
     case 'VALUES-SETTER/SET-MAX-VALUE':
-      console.log('prev hasError', state.hasError)
       return {
         ...state,
         maxValue: action.maxValue,
-        hasError: state.maxValue <= state.startValue || state.maxValue < 1 || state.startValue < 0
+        hasError: action.maxValue <= state.startValue || action.maxValue < 1 || state.startValue < 0
       }
     default:
       return state

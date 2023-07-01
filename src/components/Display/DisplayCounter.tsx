@@ -12,13 +12,11 @@ type DisplayCounterPropsType = {
 
 
 export const DisplayCounter: FC<DisplayCounterPropsType> = ({infoMessage, count, maxValue}) => {
+  const condition = `${!infoMessage && s.counter} ${infoMessage === 'incorrect value!' ? s.alert : ''} 
+      ${count === maxValue && !infoMessage ? s.alert : ''}`
+  const message = infoMessage ? infoMessage : count
+
   return (
-    <>
-      <p className={`${!infoMessage && s.counter} 
-      ${infoMessage === 'incorrect value!' ? s.alert : ''} 
-      ${count === maxValue && !infoMessage ? s.alert : ''}`}>
-        {infoMessage ? infoMessage : count}
-      </p>
-    </>
+    <p className={condition}>{message}</p>
   )
 }

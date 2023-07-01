@@ -11,6 +11,7 @@ const rootReducer = combineReducers({
 })
 
 export const store = createStore(rootReducer, loadState())
+// export const useAppDispatch = () => useDispatch<AppThunkDispatchType>()
 
 store.subscribe(() => {
   saveState({
@@ -19,11 +20,10 @@ store.subscribe(() => {
   })
 })
 
+
 export type ActionType = UserPanelsActionType | ValuesSetterActionType
 export type AppRootStateType = ReturnType<typeof rootReducer>
 // export type AppThunkDispatchType = ThunkDispatch<AppRootStateType, any, AnyAction>
-
-// export const useAppDispatch = () => useDispatch<AppThunkDispatchType>()
 
 
 // @ts-ignore

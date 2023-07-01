@@ -31,18 +31,19 @@ export const UserInterface: FC<UserInterfacePropsType> = ({panelType, count, max
   const isIncButtonDisabled = count === maxValue
   const isResetButtonDisabled = count === startValue
 
-  const setterButtons = panelType === 'setter'
-    && <Button title="set" isDisabled={isSetButtonDisabled} onClick={setMinMaxValues}/>
-  const counterButtons = panelType === 'counter'
-    && <>
-      <Button title="inc" isDisabled={isIncButtonDisabled} onClick={incrementCounter}/>
-      <Button title="reset" isDisabled={isResetButtonDisabled} onClick={resetCounter}/>
-    </>
-
   return (
     <div className={s.UserInterface}>
-      {setterButtons}
-      {counterButtons}
+      {
+        panelType === 'setter'
+          ? (
+            <Button title="set" isDisabled={isSetButtonDisabled} onClick={setMinMaxValues}/>
+          ) : (
+            <>
+              <Button title="inc" isDisabled={isIncButtonDisabled} onClick={incrementCounter}/>
+              <Button title="reset" isDisabled={isResetButtonDisabled} onClick={resetCounter}/>
+            </>
+          )
+      }
     </div>
   )
 }

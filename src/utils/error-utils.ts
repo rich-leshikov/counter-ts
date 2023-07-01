@@ -1,5 +1,5 @@
 import {Dispatch} from 'redux'
-import {setInfoMessageAC, SetInfoMessageType} from '../state/user-panels-reducer';
+import {setInfoMessageAC, SetInfoMessageType} from '../state/user-panels-reducer'
 
 
 // generic function

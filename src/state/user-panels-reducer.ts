@@ -15,9 +15,15 @@ export const userPanelsReducer = (state: Array<UserPanelType> = initialState, ac
     case 'USER-PANELS/RESET-COUNTER':
       return state.map(up => !!up.count || up.count === 0 ? {...up, count: up.startValue} : up)
     case 'USER-PANELS/SET-INFO-MESSAGE':
-      return state.map(up => !!up.infoMessage || up.infoMessage === '' ? {...up, infoMessage: action.message} : up)
+      return state.map(up => {
+          return (!!up.infoMessage || up.infoMessage === '')
+            ? {...up, infoMessage: action.message}
+            : up
+        }
+      )
     case 'USER-PANELS/SET-MIN-MAX-VALUES': {
-      if ((!!state[1].startValue || state[1].startValue === 0) && (action.maxValue >= state[1].startValue)) {
+      if ((!!state[1].startValue || state[1].startValue === 0)
+        && (action.maxValue >= state[1].startValue)) {
         return state.map(up => !!up.maxValue || up.maxValue === 0 ? {
           ...up,
           infoMessage: '',
