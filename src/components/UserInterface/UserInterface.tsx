@@ -1,16 +1,10 @@
 import {FC} from 'react'
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 
 import s from './UserInterface.module.css'
 import {Button} from './Button/Button'
-import {
-  incrementCounterAC,
-  PanelType,
-  resetCounterAC,
-  setMinMaxValuesAC,
-  UserPanelType
-} from '../../state/user-panels-reducer'
-import {AppRootStateType, useAppDispatch} from '../../state/store'
+import {incrementCounterAC, resetCounterAC, setMinMaxValuesAC, UserPanelType} from '../../state/user-panels-reducer'
+import {AppRootStateType} from '../../state/store'
 import {ValuesSetterStateType} from '../../state/values-setter-reducer'
 
 
@@ -19,7 +13,7 @@ type UserInterfacePropsType = UserPanelType
 
 export const UserInterface: FC<UserInterfacePropsType> = ({panelType, count, maxValue, startValue}) => {
   const tasks = useSelector<AppRootStateType, ValuesSetterStateType>(state => state.valuesSetter)
-  const dispatch = useAppDispatch()
+  const dispatch = useDispatch()
 
   function setMinMaxValues() {
     dispatch(setMinMaxValuesAC(tasks.maxValue, tasks.startValue))

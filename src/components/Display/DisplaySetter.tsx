@@ -2,37 +2,26 @@ import {ChangeEvent, FC} from 'react'
 
 import s from './Display.module.css'
 import {setMaxValueAC, setStartValueAC, ValuesSetterStateType} from '../../state/values-setter-reducer'
-import {AppRootStateType, useAppDispatch} from '../../state/store'
-import {setInfoMessageAC} from '../../state/user-panels-reducer';
-import {useSelector} from 'react-redux';
+import {AppRootStateType} from '../../state/store'
+import {useDispatch, useSelector} from 'react-redux'
+import {handleInfoMessageError} from '../../utils/error-utils';
 
 
-type DisplaySetterPropsType = {
-  startValue?: number
-  maxValue?: number
-}
+type DisplaySetterPropsType = {}
 
 
-export const DisplaySetter: FC<DisplaySetterPropsType> = ({startValue, maxValue}) => {
-  const tasks = useSelector<AppRootStateType, ValuesSetterStateType>(state => state.valuesSetter)
-  const dispatch = useAppDispatch()
+export const DisplaySetter: FC<DisplaySetterPropsType> = () => {
+  const setterValues = useSelector<AppRootStateType, ValuesSetterStateType>(state => state.valuesSetter)
+  const dispatch = useDispatch()
 
   const setMaxValue = (value: ChangeEvent<HTMLInputElement>) => {
     dispatch(setMaxValueAC(+value.currentTarget.value))
-    if (tasks.hasError) {
-      dispatch(setInfoMessageAC(`enter values and press 'set'`))
-    } else {
-      dispatch(setInfoMessageAC('incorrect value!'))
-    }
+    handleInfoMessageError(setterValues.hasError, dispatch)
   }
 
   const setStartValue = (value: ChangeEvent<HTMLInputElement>) => {
     dispatch(setStartValueAC(+value.currentTarget.value))
-    if (tasks.hasError) {
-      dispatch(setInfoMessageAC(`enter values and press 'set'`))
-    } else {
-      dispatch(setInfoMessageAC('incorrect value!'))
-    }
+    handleInfoMessageError(setterValues.hasError, dispatch)
   }
 
   return (
@@ -41,7 +30,7 @@ export const DisplaySetter: FC<DisplaySetterPropsType> = ({startValue, maxValue}
         <p>max value: </p>
         <input
           type={'number'}
-          value={maxValue}
+          value={setterValues.maxValue}
           onChange={setMaxValue}
         />
       </div>
@@ -49,7 +38,7 @@ export const DisplaySetter: FC<DisplaySetterPropsType> = ({startValue, maxValue}
         <p>start value: </p>
         <input
           type={'number'}
-          value={startValue}
+          value={setterValues.startValue}
           onChange={setStartValue}
         />
       </div>
